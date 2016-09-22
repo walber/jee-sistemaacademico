@@ -105,5 +105,4 @@ public class Telefone implements Serializable {
 			return false;
 		return true;
 	}
-
 }

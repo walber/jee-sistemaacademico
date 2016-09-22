@@ -36,7 +36,7 @@ public class ProfessorDAOImpl implements ProfessorDAO {
 	
 //	public ProfessorDAOImpl(){}
 	
-	private ProfessorDAOImpl() {
+	public ProfessorDAOImpl() {
 		this.sessionFactory = HibernateUtil.getSessionFactory();
 	}
 	

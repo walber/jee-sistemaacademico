@@ -1,20 +1,13 @@
 package br.com.grupo4.projetoAcademico.model;
 
 public enum Cidade {
-	
-	ABREU_E_LIMA("Abreu e Lima"),
-	CAMARAGIBE("Camaragibe"),
-	GOIANA("Goiana"),
-	IGARASSU("Igarassu"),
-	IPOJUCA("Ipojuca"),
-	MORENO("Moreno"),
-	OLINDA("Olinda"),
-	RECIFE("Recife"),
-	TIMBAUBA("Timbaúba"),
-	VITORIA_SANTO_ANTAO("Vitória de Santo Antão");
-	
+
+	ABREU_E_LIMA("Abreu e Lima"), CAMARAGIBE("Camaragibe"), GOIANA("Goiana"), IGARASSU("Igarassu"), IPOJUCA(
+			"Ipojuca"), MORENO("Moreno"), OLINDA(
+					"Olinda"), RECIFE("Recife"), TIMBAUBA("Timbaï¿½ba"), VITORIA_SANTO_ANTAO("Vitï¿½ria de Santo Antï¿½o");
+
 	private String cidade;
-	
+
 	Cidade(String cidade) {
 		this.cidade = cidade;
 	}
@@ -22,5 +15,4 @@ public enum Cidade {
 	public String getCidade() {
 		return cidade;
 	}
-	
 }

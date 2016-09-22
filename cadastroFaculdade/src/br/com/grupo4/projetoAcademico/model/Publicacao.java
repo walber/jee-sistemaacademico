@@ -32,7 +32,7 @@ public class Publicacao implements Serializable {
 	private Aluno aluno;
 	
 	/**
-	 * A inserção do Professor se dá a partir da entidade Aluno (professor_id)
+	 * A inserï¿½ï¿½o do Professor se dï¿½ a partir da entidade Aluno (professor_id)
 	 */
 	@ManyToOne
 	@JoinColumn(name = "professor_id", nullable = false)
@@ -152,5 +152,4 @@ public class Publicacao implements Serializable {
 			return false;
 		return true;
 	}
-
 }

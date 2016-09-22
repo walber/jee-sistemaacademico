@@ -39,8 +39,8 @@ public class Pessoa implements Serializable {
 	private Sexo sexo;
 
 	/**
-	 * Cascade indica que, se Pessoa for excluída/alterada, seus registros
-	 * dependentes também serão.
+	 * Cascade indica que, se Pessoa for excluï¿½da/alterada, seus registros
+	 * dependentes tambï¿½m serï¿½o.
 	 */
 	@OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Column(nullable = false)
@@ -157,5 +157,4 @@ public class Pessoa implements Serializable {
 			return false;
 		return true;
 	}
-
 }

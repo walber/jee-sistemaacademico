@@ -25,7 +25,7 @@ public class Professor extends Pessoa {
 	private String instituicao;
 
 	/**
-	 * Obtém a data automaticamente
+	 * Obtï¿½m a data automaticamente
 	 */
 	@Column(name = "data_admissao", nullable = false, updatable = false)
 	private Date dataAdmissao;

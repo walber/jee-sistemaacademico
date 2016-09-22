@@ -39,7 +39,7 @@ public class Endereco implements Serializable {
 	private Cidade cidade;
 
 	/**
-	 * UF padrão deve ser 'Pernambuco'
+	 * UF padrï¿½o deve ser 'Pernambuco'
 	 */
 //	@Column(columnDefinition = "varchar(60) default 'Pernambuco'", nullable = false)
 	@Column(nullable = false)
