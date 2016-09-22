@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -20,6 +21,7 @@ import br.com.grupo4.sistemaacademico.publicacao.Publicacao;
 
 @Entity
 @Table(name = "aluno")
+@PrimaryKeyJoinColumn(name = "pessoa_id")
 public class Aluno extends Pessoa {
 
 	private static final long serialVersionUID = 6238828153614651759L;

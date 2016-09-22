@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import br.com.grupo4.sistemaacademico.aluno.Aluno;
@@ -18,6 +20,7 @@ import br.com.grupo4.sistemaacademico.titulacao.Titulacao;
 
 @Entity
 @Table(name = "professor")
+@PrimaryKeyJoinColumn(name = "pessoa_id")
 public class Professor extends Pessoa {
 
 	private static final long serialVersionUID = 3456960108021129198L;
@@ -28,7 +31,7 @@ public class Professor extends Pessoa {
 	/**
 	 * Obtém a data automaticamente
 	 */
-	@Column(name = "data_admissao", nullable = false)
+	@Column(name = "data_admissao", nullable = false, updatable = false)
 	private Date dataAdmissao;
 
 	@ManyToOne
@@ -37,6 +40,13 @@ public class Professor extends Pessoa {
 
 	@OneToMany(mappedBy = "professor", fetch = FetchType.LAZY)
 	private Set<Aluno> alunos = new HashSet<>();
+	
+	@PrePersist
+	protected void onCreate() {
+		if (this.dataAdmissao == null) {
+			this.dataAdmissao = new Date(System.currentTimeMillis());
+		}
+	}
 	
 	/*
 	 * Getters e setters

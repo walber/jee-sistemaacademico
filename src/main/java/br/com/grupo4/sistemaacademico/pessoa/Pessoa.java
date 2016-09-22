@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,7 +23,8 @@ import br.com.grupo4.sistemaacademico.endereco.Endereco;
 import br.com.grupo4.sistemaacademico.telefone.Telefone;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "pessoa")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 3715431135816526348L;
@@ -41,10 +43,6 @@ public abstract class Pessoa implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(length = 1, nullable = false)
 	private Sexo sexo;
-
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
-	private TipoPessoa tipo;
 
 	/**
 	 * Cascade indica que, se Pessoa for excluída/alterada, seus registros
@@ -94,14 +92,6 @@ public abstract class Pessoa implements Serializable {
 		this.sexo = sexo;
 	}
 
-	public TipoPessoa getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoPessoa tipo) {
-		this.tipo = tipo;
-	}
-
 	public Set<Endereco> getEndereco() {
 		return endereco;
 	}
@@ -132,7 +122,6 @@ public abstract class Pessoa implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
-		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
 
@@ -171,8 +160,6 @@ public abstract class Pessoa implements Serializable {
 		} else if (!nome.equals(other.nome))
 			return false;
 		if (sexo != other.sexo)
-			return false;
-		if (tipo != other.tipo)
 			return false;
 		return true;
 	}
