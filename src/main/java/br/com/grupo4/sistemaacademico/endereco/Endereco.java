@@ -37,12 +37,20 @@ public class Endereco implements Serializable {
 	@Column(nullable = false)
 	private Cidade cidade;
 
-	@Column(columnDefinition = "varchar(60) default 'Pernambuco'", nullable = false)
+	/**
+	 * UF padrão deve ser 'Pernambuco'
+	 */
+//	@Column(columnDefinition = "varchar(60) default 'Pernambuco'", nullable = false)
+	@Column(nullable = false)
 	private String uf;
 
 	@ManyToOne
 	@JoinColumn(name = "pessoa_id", nullable = false)
 	private Pessoa pessoa;
+	
+	/*
+	 * Getters e setters
+	 */
 
 	public Integer getId() {
 		return id;
@@ -99,6 +107,10 @@ public class Endereco implements Serializable {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+	
+	/*
+	 * hashCode() e equals()
+	 */
 
 	@Override
 	public int hashCode() {

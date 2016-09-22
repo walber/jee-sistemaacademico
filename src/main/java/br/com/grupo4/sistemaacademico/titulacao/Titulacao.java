@@ -29,6 +29,10 @@ public class Titulacao implements Serializable {
 
 	@OneToMany(mappedBy = "titulacao", fetch = FetchType.LAZY)
 	private Set<Professor> professores = new HashSet<>();
+	
+	/*
+	 * Getters e setters
+	 */
 
 	public Integer getId() {
 		return id;
@@ -53,6 +57,10 @@ public class Titulacao implements Serializable {
 	public void setProfessores(Set<Professor> professores) {
 		this.professores = professores;
 	}
+	
+	/*
+	 * hashCode() e equals()
+	 */
 
 	@Override
 	public int hashCode() {

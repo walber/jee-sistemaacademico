@@ -2,17 +2,11 @@
 
 Entidades prontas:
 
-* Pessoa
+* Pessoa (abstrata)
 * Endereco
 * Telefone
-
-Entidades em desenvolvimento:
-
 * Aluno
 * Professor
 * Titulacao
-
-Entidades zeradas:
-
 * Publicacao
 * Meio

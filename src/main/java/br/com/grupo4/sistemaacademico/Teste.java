@@ -11,6 +11,8 @@ public class Teste {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 		
+		
+		
 		transaction.commit();
 	}
 

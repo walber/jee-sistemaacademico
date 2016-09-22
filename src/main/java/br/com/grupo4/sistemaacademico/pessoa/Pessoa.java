@@ -32,6 +32,9 @@ public abstract class Pessoa implements Serializable {
 	@GenericGenerator(name = "inc", strategy = "increment")
 	private Integer id;
 
+	@Column(length = 11, nullable = false, unique = true)
+	private String cpf;
+
 	@Column(length = 100, nullable = false)
 	private String nome;
 
@@ -39,13 +42,14 @@ public abstract class Pessoa implements Serializable {
 	@Column(length = 1, nullable = false)
 	private Sexo sexo;
 
-	@Column(length = 14, nullable = false)
-	private String cpf;
-
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private TipoPessoa tipo;
 
+	/**
+	 * Cascade indica que, se Pessoa for excluída/alterada, seus registros
+	 * dependentes também serão.
+	 */
 	@OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Column(nullable = false)
 	private Set<Endereco> endereco = new HashSet<>();
@@ -53,6 +57,10 @@ public abstract class Pessoa implements Serializable {
 	@OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Column(nullable = false)
 	private Set<Telefone> fones = new HashSet<>();
+	
+	/*
+	 * Getters e setters
+	 */
 
 	public Integer getId() {
 		return id;
@@ -60,6 +68,14 @@ public abstract class Pessoa implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getNome() {
@@ -76,14 +92,6 @@ public abstract class Pessoa implements Serializable {
 
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
 	}
 
 	public TipoPessoa getTipo() {
@@ -109,6 +117,10 @@ public abstract class Pessoa implements Serializable {
 	public void setFones(Set<Telefone> fones) {
 		this.fones = fones;
 	}
+	
+	/*
+	 * hashCode() e equals()
+	 */
 
 	@Override
 	public int hashCode() {

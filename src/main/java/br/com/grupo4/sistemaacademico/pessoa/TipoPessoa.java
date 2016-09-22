@@ -2,8 +2,8 @@ package br.com.grupo4.sistemaacademico.pessoa;
 
 public enum TipoPessoa {
 	
-	ALUNO("aluno"),
-	PROFESSOR("professor");
+	ALUNO("Aluno"),
+	PROFESSOR("Professor");
 	
 	private String tipo;
 	

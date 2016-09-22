@@ -2,7 +2,7 @@ package br.com.grupo4.sistemaacademico.pessoa;
 
 public enum Sexo {
 
-	MASCULINO('m'), FEMININO('f');
+	MASCULINO('M'), FEMININO('F'), OUTROS('O');
 
 	private Character sexo;
 

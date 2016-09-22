@@ -9,9 +9,9 @@ public enum Cidade {
 	IPOJUCA("Ipojuca"),
 	MORENO("Moreno"),
 	OLINDA("Olinda"),
-	PETROLINA("Petrolina"),
 	RECIFE("Recife"),
-	TIMBAUBA("Timbaúba");
+	TIMBAUBA("Timbaúba"),
+	VITORIA_SANTO_ANTAO("Vitória de Santo Antão");
 	
 	private String cidade;
 	

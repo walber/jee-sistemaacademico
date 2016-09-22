@@ -25,6 +25,9 @@ public class Professor extends Pessoa {
 	@Column(nullable = false)
 	private String instituicao;
 
+	/**
+	 * Obtém a data automaticamente
+	 */
 	@Column(name = "data_admissao", nullable = false)
 	private Date dataAdmissao;
 
@@ -34,6 +37,10 @@ public class Professor extends Pessoa {
 
 	@OneToMany(mappedBy = "professor", fetch = FetchType.LAZY)
 	private Set<Aluno> alunos = new HashSet<>();
+	
+	/*
+	 * Getters e setters
+	 */
 
 	public String getInstituicao() {
 		return instituicao;
@@ -66,6 +73,10 @@ public class Professor extends Pessoa {
 	public void setAlunos(Set<Aluno> alunos) {
 		this.alunos = alunos;
 	}
+	
+	/*
+	 * hashCode() e equals()
+	 */
 
 	@Override
 	public int hashCode() {

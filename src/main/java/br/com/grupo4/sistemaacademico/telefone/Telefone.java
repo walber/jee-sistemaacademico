@@ -29,8 +29,12 @@ public class Telefone implements Serializable {
 	private int numero;
 
 	@ManyToOne
-	@JoinColumn(name = "pessoa_id")
+	@JoinColumn(name = "pessoa_id", nullable = false)
 	private Pessoa pessoa;
+	
+	/*
+	 * Getters e setters
+	 */
 
 	public Integer getId() {
 		return id;
@@ -63,6 +67,10 @@ public class Telefone implements Serializable {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+	
+	/*
+	 * hashCode() e equals()
+	 */
 
 	@Override
 	public int hashCode() {
