@@ -1,0 +1,22 @@
+body {
+	padding-top: 50px;
+}
+
+.btn-home {
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	display: inline-block;
+	height: 120px;
+	width: 150px;
+}
+
+.btn-home img {
+	border-radius: 5px;
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+
+.btn-home :hover {
+	cursor: pointer;
+}
