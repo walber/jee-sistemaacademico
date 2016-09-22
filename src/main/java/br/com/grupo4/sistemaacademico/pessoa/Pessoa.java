@@ -30,8 +30,7 @@ public abstract class Pessoa implements Serializable {
 	private static final long serialVersionUID = 3715431135816526348L;
 
 	@Id
-	@GeneratedValue(generator = "inc")
-	@GenericGenerator(name = "inc", strategy = "increment")
+	@GeneratedValue
 	private Integer id;
 
 	@Column(length = 11, nullable = false, unique = true)
