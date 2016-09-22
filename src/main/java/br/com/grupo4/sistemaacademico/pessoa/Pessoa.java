@@ -17,8 +17,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import br.com.grupo4.sistemaacademico.endereco.Endereco;
 import br.com.grupo4.sistemaacademico.telefone.Telefone;
 
