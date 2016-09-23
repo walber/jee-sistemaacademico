@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -34,8 +35,9 @@ public class Pessoa implements Serializable {
 	@Column(length = 100, nullable = false)
 	private String nome;
 
-	@Enumerated(EnumType.STRING)
-	@Column(length = 1, nullable = true)
+	@Enumerated(EnumType.ORDINAL)
+	@Convert( converter=SexoConverter.class )
+	@Column( length = 1,nullable = true)
 	private Sexo sexo;
 
 	/**
@@ -77,11 +79,17 @@ public class Pessoa implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+	
+	@Enumerated(EnumType.ORDINAL)
+	@Convert( converter=SexoConverter.class )
+	@Column( length = 1,nullable = true)
 	public Sexo getSexo() {
 		return sexo;
 	}
 
+	@Enumerated(EnumType.ORDINAL)
+	@Convert( converter=SexoConverter.class )
+	@Column( length = 1,nullable = true)
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}

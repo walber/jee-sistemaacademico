@@ -1,10 +1,8 @@
 package br.com.grupo4.projetoAcademico.main;
 
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 
 import br.com.grupo4.projetoAcademico.dao.EnderecoDAOImpl;
 import br.com.grupo4.projetoAcademico.dao.PessoaDAOImpl;
@@ -19,32 +17,28 @@ import br.com.grupo4.projetoAcademico.model.Sexo;
 import br.com.grupo4.projetoAcademico.model.Telefone;
 import br.com.grupo4.projetoAcademico.model.Titulacao;
 
-
 public class Teste {
-	
-	
+
 	public static void main(String[] args) {
-//		Session session = HibernateUtil.getSessionFactory().openSession();
-//		Transaction transaction = session.beginTransaction();
-//		transaction.commit();
-//		
-		
+		// Session session = HibernateUtil.getSessionFactory().openSession();
+		// Transaction transaction = session.beginTransaction();
+		// transaction.commit();
+		//
+
 		Teste t = new Teste();
 		t.inserirPessoa();
-		
+
 	}
-	
-	public void inserirProfessor(){
-		
-		
+
+	public void inserirProfessor() {
+
 		Professor p = new Professor();
 		p.setCpf("1324");
 		p.setNome("raimundo");
-
+		p.setSexo(Sexo.MASCULINO);
 		p.setInstituicao("ufpe");
 		p.setDataAdmissao(new Date(System.currentTimeMillis()));
-		
-		
+
 		HashSet<Endereco> end = new HashSet<Endereco>();
 		Endereco nend = new Endereco();
 		nend.setBairro("Bairro Novo");
@@ -54,40 +48,32 @@ public class Teste {
 		nend.setUf("PE");
 		nend.setPessoa(p);
 		end.add(nend);
-//		p.setEndereco(end);
-		
-		
-		
-		
+		// p.setEndereco(end);
+
 		Telefone telefone = new Telefone();
 		telefone.setDdd(81);
 		telefone.setNumero(36211480);
-		//HashSet<Telefone> telefoneHS= new HashSet<Telefone>();
+		// HashSet<Telefone> telefoneHS= new HashSet<Telefone>();
 		telefone.setPessoa(p);
-//		telefoneHS.add(telefone);
-		
-		
+		// telefoneHS.add(telefone);
+
 		Titulacao titulo = new Titulacao();
 		titulo.setNomeTitulo("Professor");
-		Set<Professor> conjuntoProfessores =  titulo.getProfessores();
+		Set<Professor> conjuntoProfessores = titulo.getProfessores();
 		conjuntoProfessores.add(p);
 		titulo.setProfessores(conjuntoProfessores);
-//		p.setTitulacao(titulo);
-		
-		
+		// p.setTitulacao(titulo);
+
 		ProfessorDAOImpl.getInstance().inserir(p);
 		EnderecoDAOImpl.getInstance().inserir(nend);
 		TelefoneDAOImpl.getInstance().inserir(telefone);
 		TitulacaoDAOImpl.getInstance().inserir(titulo);
-		
-		
-		
-//		prof.inserir(p);
+
+		// prof.inserir(p);
 	}
-	
-	public void inserirPessoa(){
-		
-		
+
+	public void inserirPessoa() {
+
 		Pessoa a = new Pessoa();
 		a.setCpf("1324");
 		a.setNome("raimundo");
@@ -100,22 +86,17 @@ public class Teste {
 		nend.setNumero(123);
 		nend.setUf("PE");
 		nend.setPessoa(a);
-		
+
 		Telefone telefone = new Telefone();
 		telefone.setDdd(81);
 		telefone.setNumero(36211480);
 		telefone.setPessoa(a);
-		
-		
+
 		PessoaDAOImpl.getInstance().inserir(a);
 		EnderecoDAOImpl.getInstance().inserir(nend);
 		TelefoneDAOImpl.getInstance().inserir(telefone);
-		
-		
-		
-//		prof.inserir(p);
+
+		// prof.inserir(p);
 	}
-	
-	
-	
+
 }
