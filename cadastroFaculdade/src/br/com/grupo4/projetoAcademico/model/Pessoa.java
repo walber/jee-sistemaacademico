@@ -35,7 +35,7 @@ public class Pessoa implements Serializable {
 	@Column(length = 100, nullable = false)
 	private String nome;
 
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	@Convert( converter=SexoConverter.class )
 	@Column( length = 1,nullable = true)
 	private Sexo sexo;
@@ -80,14 +80,14 @@ public class Pessoa implements Serializable {
 		this.nome = nome;
 	}
 	
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	@Convert( converter=SexoConverter.class )
 	@Column( length = 1,nullable = true)
 	public Sexo getSexo() {
 		return sexo;
 	}
 
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	@Convert( converter=SexoConverter.class )
 	@Column( length = 1,nullable = true)
 	public void setSexo(Sexo sexo) {

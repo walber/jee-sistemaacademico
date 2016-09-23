@@ -33,9 +33,9 @@ public class Teste {
 	public void inserirProfessor() {
 
 		Professor p = new Professor();
-		p.setCpf("1324");
+		p.setCpf("10153823470");
 		p.setNome("raimundo");
-		p.setSexo(Sexo.MASCULINO);
+		p.setSexo(Sexo.M);
 		p.setInstituicao("ufpe");
 		p.setDataAdmissao(new Date(System.currentTimeMillis()));
 
@@ -75,21 +75,21 @@ public class Teste {
 	public void inserirPessoa() {
 
 		Pessoa a = new Pessoa();
-		a.setCpf("1324");
-		a.setNome("raimundo");
-		a.setSexo(Sexo.MASCULINO);
+		a.setCpf("1015382470");
+		a.setNome("paulo");
+		a.setSexo(Sexo.M);
 
 		Endereco nend = new Endereco();
 		nend.setBairro("Bairro Novo");
 		nend.setCidade(Cidade.OLINDA);
-		nend.setLogradouro("rua 0");
+		nend.setLogradouro("rua 2");
 		nend.setNumero(123);
 		nend.setUf("PE");
 		nend.setPessoa(a);
 
 		Telefone telefone = new Telefone();
 		telefone.setDdd(81);
-		telefone.setNumero(36211480);
+		telefone.setNumero(36211482);
 		telefone.setPessoa(a);
 
 		PessoaDAOImpl.getInstance().inserir(a);

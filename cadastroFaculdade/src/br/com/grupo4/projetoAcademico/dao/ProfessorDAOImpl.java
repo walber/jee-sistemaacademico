@@ -19,9 +19,6 @@ import br.com.grupo4.projetoAcademico.util.HibernateUtil;
 @Repository
 public class ProfessorDAOImpl implements ProfessorDAO {
 	
-	
-	
-	
 	private SessionFactory sessionFactory;
 	private static ProfessorDAOImpl instance;
 	
@@ -32,9 +29,6 @@ public class ProfessorDAOImpl implements ProfessorDAO {
 		
 		return instance;
 	}
-	
-	
-//	public ProfessorDAOImpl(){}
 	
 	public ProfessorDAOImpl() {
 		this.sessionFactory = HibernateUtil.getSessionFactory();

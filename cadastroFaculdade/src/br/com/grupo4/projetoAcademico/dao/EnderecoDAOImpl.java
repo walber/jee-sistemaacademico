@@ -1,5 +1,7 @@
 package br.com.grupo4.projetoAcademico.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -36,6 +38,24 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 		else{
 			System.out.println("Nao ta open");
 		}
+	}
+
+	@Override
+	public List<Endereco> listar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void atualizar(Endereco endereco) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remover(int id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

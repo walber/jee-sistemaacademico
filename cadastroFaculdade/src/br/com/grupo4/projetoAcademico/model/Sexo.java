@@ -2,24 +2,24 @@ package br.com.grupo4.projetoAcademico.model;
 
 public enum Sexo {
 
-	MASCULINO(1), FEMININO(2);
+	M("M"), F("F");
 
-	private final int sexo;
+	private final String sexo;
 
-	Sexo(int sexo) {
+	Sexo(String sexo) {
 		this.sexo = sexo;
 	}
 
-	public int getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
 	
-	public static Sexo fromCode(int code) throws Exception {
-        if ( code ==1 ) {
-            return MASCULINO;
+	public static Sexo fromCode(String code) throws Exception {
+        if ( code.equals("M") || code.equals("m")) {
+            return M;
         }
-        if ( code == 2) {
-            return FEMININO;
+        if ( code.equals("F") || code.equals("f")) {
+            return F;
         }
         else {
         	throw new Exception("O Codigo de Sexo indicado não foi reconhecido.");

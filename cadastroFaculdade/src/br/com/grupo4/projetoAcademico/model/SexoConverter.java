@@ -2,10 +2,10 @@ package br.com.grupo4.projetoAcademico.model;
 
 import javax.persistence.AttributeConverter;
 
-public class SexoConverter implements AttributeConverter<Integer, Sexo> {
+public class SexoConverter implements AttributeConverter<String, Sexo> {
 
 	@Override
-	public Sexo convertToDatabaseColumn(Integer arg0) {
+	public Sexo convertToDatabaseColumn(String arg0) {
         try {
 			return Sexo.fromCode( arg0 );
 		} catch (Exception e) {
@@ -16,10 +16,10 @@ public class SexoConverter implements AttributeConverter<Integer, Sexo> {
 	}
 
 	@Override
-	public Integer convertToEntityAttribute(Sexo arg0) {
+	public String convertToEntityAttribute(Sexo arg0) {
 
 		if ( arg0 == null ) {
-            return -1;
+            return null;
         }
 
         return arg0.getSexo();
