@@ -83,16 +83,19 @@ public class AlunoDAOImpl implements AlunoDAO{
 	}
 
 	@Override
+	@Transactional
 	public void atualizar(Aluno aluno) {
 		sessionFactory.getCurrentSession().update(aluno);
 	}
 
 	@Override
+	@Transactional
 	public Aluno getAlunoById(int id) {
 		return (Aluno) sessionFactory.getCurrentSession().get(Aluno.class, id); 
 	}
 
 	@Override
+	@Transactional
 	public int getAlunoId(String cpf) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Aluno.class, "aluno");
 		criteria.add(Restrictions.eq("aluno.cpf", cpf));

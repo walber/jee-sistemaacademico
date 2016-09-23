@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
+import br.com.grupo4.projetoAcademico.model.Aluno;
 import br.com.grupo4.projetoAcademico.model.Endereco;
 import br.com.grupo4.projetoAcademico.model.Pessoa;
 import br.com.grupo4.projetoAcademico.model.Telefone;
@@ -46,22 +49,55 @@ public class PessoaDAOImpl implements PessoaDAO {
 		}
 		
 	}
+	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Pessoa> listar() {
-		// TODO Auto-generated method stub
-		return null;
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Pessoa.class);
+		return criteria.list();
+	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Endereco> getEnderecos(int id) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Pessoa.class, "pessoa");
+		criteria.createCriteria("endereco", "e");
+		criteria.add(Restrictions.eq("e.pessoa_id", id));
+		return criteria.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Telefone> getTelefones(int id) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Pessoa.class, "pessoa");
+		criteria.createCriteria("telefone", "t");
+		criteria.add(Restrictions.eq("t.pessoa_id", id));
+		return criteria.list();
 	}
 
 	@Override
-	public List<Endereco> getEnderecos() {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public void atualizar(Pessoa pessoa) {
+		sessionFactory.getCurrentSession().update(pessoa);
+		
 	}
 
 	@Override
-	public List<Telefone> getTelefones() {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public Pessoa getPessoaById(int id) {
+		return (Pessoa) sessionFactory.getCurrentSession().get(Pessoa.class, id); 
+	}
+
+	@Override
+	@Transactional
+	public int getPessoaId(String cpf) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Pessoa.class, "aluno");
+		criteria.add(Restrictions.eq("pessoa.cpf", cpf));
+		criteria.setMaxResults(1);
+		return (int) criteria.uniqueResult();
 	}
 
 }

@@ -2,9 +2,14 @@ package br.com.grupo4.projetoAcademico.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
+import br.com.grupo4.projetoAcademico.model.Aluno;
 import br.com.grupo4.projetoAcademico.model.Endereco;
 import br.com.grupo4.projetoAcademico.util.HibernateUtil;
 
@@ -26,36 +31,47 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 	}
 	
 	@Override
+	@Transactional
 	public void inserir(Endereco endereco) {
 		Session session= sessionFactory.getCurrentSession();
 		if (session.isOpen()){
-			System.out.println("Ta chegnado em inserir de endereco");
+//			System.out.println("Ta chegnado em inserir de endereco");
 			session.getTransaction().begin();
 			session.save(endereco);
 			session.getTransaction().commit();
 			
 		}
 		else{
-			System.out.println("Nao ta open");
+//			System.out.println("Nao ta open");
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Endereco> listar() {
-		// TODO Auto-generated method stub
-		return null;
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Endereco.class);
+		return criteria.list();
 	}
 
 	@Override
+	@Transactional
 	public void atualizar(Endereco endereco) {
-		// TODO Auto-generated method stub
-		
+		sessionFactory.getCurrentSession().update(endereco);
 	}
 
 	@Override
+	@Transactional
 	public void remover(int id) {
-		// TODO Auto-generated method stub
-		
+		sessionFactory.getCurrentSession().delete(this.getEnderecoById(id));
 	}
+	
+	@Override
+	@Transactional
+	public Endereco getEnderecoById(int id) {
+		return (Endereco) sessionFactory.getCurrentSession().get(Endereco.class, id); 
+	}
+	
+	// Precisamos de um metodo getEnderecoId(chave_primaria/candidata) ?
 
 }

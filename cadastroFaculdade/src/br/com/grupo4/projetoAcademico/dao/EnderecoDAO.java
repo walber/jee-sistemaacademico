@@ -12,4 +12,5 @@ public interface EnderecoDAO {
 	public List<Endereco> listar();
 	public void atualizar(Endereco endereco);
 	public void remover(int id);
+	public Endereco getEnderecoById(int id);
 }

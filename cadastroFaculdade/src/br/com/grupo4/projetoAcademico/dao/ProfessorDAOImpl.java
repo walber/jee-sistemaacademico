@@ -40,14 +40,14 @@ public class ProfessorDAOImpl implements ProfessorDAO {
 	public void inserir(Professor professor) {
 		Session session= sessionFactory.getCurrentSession();
 		if (session.isOpen()){
-			System.out.println("Ta chegnado em inserir de professordaoimpl");
+//			System.out.println("Ta chegnado em inserir de professordaoimpl");
 			session.getTransaction().begin();
 			session.save(professor);
 			session.getTransaction().commit();
 			
 		}
 		else{
-			System.out.println("Nao ta open");
+//			System.out.println("Nao ta open");
 		}
 		
 	}
