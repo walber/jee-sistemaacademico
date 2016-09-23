@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/main.xhtml">
+    <ui:define name="title">Cadastrar Professor</ui:define>
+    
+    <ui:define name="content">
+        <h:form acceptcharset="UTF-8" class="form-horizontal">
+            <!-- CPF -->
+            <div class="form-group">
+                <p:outputLabel for="cpf" value="CPF: " class="col-md-2 control-label" />
+                <div class="col-md-4">
+                    <p:inputText id="cpf" value="" class="cpf" required="true" />
+                </div>
+            </div> <!-- /.form-group -->
+            
+            <!-- Nome -->
+            <div class="form-group">
+                <p:outputLabel for="nome" value="Nome: " class="col-md-2 control-label" />
+                <div class="col-md-4">
+                    <p:inputText id="nome" value="" class="" required="true" />
+                </div>
+            </div> <!-- /.form-group -->
+            
+            <!-- Sexo -->
+            <div class="form-group">
+                <p:outputLabel for="sexo" value="Sexo: " class="col-md-2 control-label" />
+                <div class="col-md-4">
+                    <p:selectOneRadio id="sexo" value="" required="true">
+                        <f:selectItem itemValue="M" itemLabel="Masculino" />
+                        <f:selectItem itemValue="F" itemLabel="Feminino" />
+                    </p:selectOneRadio>
+                </div>
+            </div> <!-- /.form-group -->
+            
+            <!-- Data de Admissão -->
+            <div class="form-group">
+                <!-- <p:outputLabel for="dataAdmissao" value="Data de Admissão: " class="col-md-2 control-label" /> -->
+                <div class="col-md-2">
+                    <!-- <p:calendar id="dataAdmissao" value="#{professor.dataAdmissao}" /> -->
+                </div>
+            </div> <!-- /.form-group -->
+            
+            <!-- Instituição -->
+            <div class="form-group">
+                <p:outputLabel for="instituicao" value="Instituição: " class="col-md-2 control-label" />
+                <div class="col-md-4">
+                    <p:inputText id="instituicao" value="" class="" />
+                </div>
+            </div> <!-- /.form-group -->
+            
+            <!-- Titulação -->
+            <div class="form-group">
+                <p:outputLabel for="titulacao" value="Titulação: " class="col-md-2 control-label" />
+                <div class="col-md-4">
+                    <p:inputText id="titulacao" value="" class="" />
+                </div>
+            </div> <!-- /.form-group -->
+            
+            <!-- Salvar -->
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-2">
+                    <p:commandButton value="Salvar" />
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

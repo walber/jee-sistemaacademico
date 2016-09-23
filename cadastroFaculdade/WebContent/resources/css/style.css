@@ -1,0 +1,4 @@
+.ui-selectoneradio td:NTH-CHILD(2n) {
+	padding-left: 5px;
+	padding-right: 10px;
+}
