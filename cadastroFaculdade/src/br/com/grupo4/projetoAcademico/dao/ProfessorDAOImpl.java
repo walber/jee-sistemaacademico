@@ -2,14 +2,12 @@ package br.com.grupo4.projetoAcademico.dao;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.grupo4.projetoAcademico.model.Endereco;
 import br.com.grupo4.projetoAcademico.model.Professor;
@@ -18,38 +16,38 @@ import br.com.grupo4.projetoAcademico.util.HibernateUtil;
 
 @Repository
 public class ProfessorDAOImpl implements ProfessorDAO {
-	
+
 	private SessionFactory sessionFactory;
 	private static ProfessorDAOImpl instance;
-	
+
 	public static ProfessorDAOImpl getInstance(){
 		if (instance == null){
 			instance = new ProfessorDAOImpl();
 		}
-		
+
 		return instance;
 	}
-	
+
 	public ProfessorDAOImpl() {
 		this.sessionFactory = HibernateUtil.getSessionFactory();
 	}
-	
-	
+
+
 	@Override
 	@Transactional
 	public void inserir(Professor professor) {
 		Session session= sessionFactory.getCurrentSession();
 		if (session.isOpen()){
-//			System.out.println("Ta chegnado em inserir de professordaoimpl");
+			//			System.out.println("Ta chegnado em inserir de professordaoimpl");
 			session.getTransaction().begin();
 			session.save(professor);
 			session.getTransaction().commit();
-			
+
 		}
 		else{
-//			System.out.println("Nao ta open");
+			//			System.out.println("Nao ta open");
 		}
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -59,32 +57,22 @@ public class ProfessorDAOImpl implements ProfessorDAO {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Professor.class);
 		return criteria.list();
 	}
+	
 
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<Endereco> getEnderecos(int id) {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Professor.class, "prof");
-		criteria.createCriteria("endereco", "e");
-		criteria.add(Restrictions.eq("e.pessoa_id", id));
-		return criteria.list();
-	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<Telefone> getTelefones(int id) { //possivel modificacao
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Professor.class, "prof");
-		criteria.createCriteria("telefone", "t");
-		criteria.add(Restrictions.eq("t.pessoa_id", id));
-		return criteria.list();
-	}
-
+	// OK
 	@Override
 	@Transactional
 	public Professor getProfessorById(int id) {
 		//duvida pessoa ou professor
-		return (Professor) sessionFactory.getCurrentSession().get(Professor.class, id); 
+		Session session= sessionFactory.getCurrentSession();
+		if (session.isOpen()){
+			session.getTransaction().begin();
+			Professor result=  (Professor) sessionFactory.getCurrentSession().get(Professor.class, id);
+			session.getTransaction().commit();
+			return result;
+		}
+		return null;
 	}
 
 	@Override
@@ -93,13 +81,22 @@ public class ProfessorDAOImpl implements ProfessorDAO {
 		sessionFactory.getCurrentSession().update(professor);
 	}
 
+	// OK
 	@Override
 	@Transactional
 	public int getProfessorId(String cpf) {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Professor.class, "prof");
-		criteria.add(Restrictions.eq("prof.cpf", cpf));
-		criteria.setMaxResults(1);
-		return (int) criteria.uniqueResult();
+		Session session= sessionFactory.getCurrentSession();
+		if (session.isOpen()){
+			session.getTransaction().begin();
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Professor.class, "prof");
+			criteria.add(Restrictions.eq("prof.cpf", cpf));
+			criteria.setMaxResults(1);
+			Professor result =  (Professor) criteria.uniqueResult();
+			session.getTransaction().commit();
+			return result.getId();
+		}
+		return -1;
+
 	}
 
 }

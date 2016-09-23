@@ -55,26 +55,6 @@ public class AlunoDAOImpl implements AlunoDAO{
 		return criteria.list();
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<Endereco> getEnderecos(int id) {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Aluno.class, "aluno");
-		criteria.createCriteria("endereco", "e");
-		criteria.add(Restrictions.eq("e.pessoa_id", id));
-		return criteria.list();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	@Transactional
-	public List<Telefone> getTelefones(int id) {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Aluno.class, "aluno");
-		criteria.createCriteria("telefone", "t");
-		criteria.add(Restrictions.eq("t.pessoa_id", id));
-		return criteria.list();
-	}
-
 	@Override
 	@Transactional
 	public void remover(int id) {

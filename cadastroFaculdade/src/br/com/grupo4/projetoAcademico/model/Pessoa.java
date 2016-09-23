@@ -50,7 +50,7 @@ public class Pessoa implements Serializable {
 
 	@OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Column(nullable = false)
-	private Set<Telefone> fones = new HashSet<>();
+	private Set<Telefone> telefone = new HashSet<>();
 	
 	/*
 	 * Getters e setters
@@ -102,12 +102,12 @@ public class Pessoa implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public Set<Telefone> getFones() {
-		return fones;
+	public Set<Telefone> getTelefone() {
+		return telefone;
 	}
 
-	public void setFones(Set<Telefone> fones) {
-		this.fones = fones;
+	public void setTelefone(Set<Telefone> telefone) {
+		this.telefone = telefone;
 	}
 	
 	/*
@@ -120,7 +120,7 @@ public class Pessoa implements Serializable {
 		int result = 1;
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
-		result = prime * result + ((fones == null) ? 0 : fones.hashCode());
+		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
@@ -146,10 +146,10 @@ public class Pessoa implements Serializable {
 				return false;
 		} else if (!endereco.equals(other.endereco))
 			return false;
-		if (fones == null) {
-			if (other.fones != null)
+		if (telefone == null) {
+			if (other.telefone != null)
 				return false;
-		} else if (!fones.equals(other.fones))
+		} else if (!telefone.equals(other.telefone))
 			return false;
 		if (id == null) {
 			if (other.id != null)

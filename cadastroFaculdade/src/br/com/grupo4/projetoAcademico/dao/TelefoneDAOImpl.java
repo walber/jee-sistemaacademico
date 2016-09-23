@@ -8,7 +8,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import br.com.grupo4.projetoAcademico.model.Publicacao;
 import br.com.grupo4.projetoAcademico.model.Telefone;
 import br.com.grupo4.projetoAcademico.util.HibernateUtil;
 
@@ -37,7 +36,6 @@ public class TelefoneDAOImpl implements TelefoneDAO {
 			session.getTransaction().begin();
 			session.save(telefone);
 			session.getTransaction().commit();
-			
 		}
 		else{
 //			System.out.println("Nao ta open");

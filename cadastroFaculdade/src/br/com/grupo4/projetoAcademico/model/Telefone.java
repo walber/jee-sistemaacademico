@@ -81,6 +81,11 @@ public class Telefone implements Serializable {
 	}
 
 	@Override
+	public String toString() {
+		return "Telefone [ddd=" + ddd + ", numero=" + numero + ", pessoa=" + pessoa + "]";
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

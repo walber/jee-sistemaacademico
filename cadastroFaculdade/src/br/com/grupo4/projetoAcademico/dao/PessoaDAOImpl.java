@@ -38,14 +38,14 @@ public class PessoaDAOImpl implements PessoaDAO {
 	public void inserir(Pessoa pessoa) {
 		Session session= sessionFactory.getCurrentSession();
 		if (session.isOpen()){
-			System.out.println("Ta chegnado em inserir de professordaoimpl");
+//			System.out.println("Ta chegnado em inserir de professordaoimpl");
 			session.getTransaction().begin();
 			session.save(pessoa);
 			session.getTransaction().commit();
 			
 		}
 		else{
-			System.out.println("Nao ta open");
+//			System.out.println("Nao ta open");
 		}
 		
 	}
@@ -57,25 +57,59 @@ public class PessoaDAOImpl implements PessoaDAO {
 		return criteria.list();
 	}
 
-
+//
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	@Transactional
+//	public List<Endereco> getEnderecos(int id) {
+//		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Pessoa.class, "pessoa");
+//		criteria.createCriteria("endereco", "e");
+//		criteria.add(Restrictions.eq("e.pessoa_id", id));
+//		return criteria.list();
+//	}
+//
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	@Transactional
+//	public List<Telefone> getTelefones(int id) {
+//		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Pessoa.class, "pessoa");
+//		criteria.createCriteria("telefone", "t");
+//		criteria.add(Restrictions.eq("t.pessoa_id", id));
+//		return criteria.list();
+//	}
+	
+	// OK
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<Endereco> getEnderecos(int id) {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Pessoa.class, "pessoa");
-		criteria.createCriteria("endereco", "e");
-		criteria.add(Restrictions.eq("e.pessoa_id", id));
-		return criteria.list();
+		
+		Session session = sessionFactory.getCurrentSession();
+		if (session.isOpen()) {
+			session.getTransaction().begin();
+			List<Endereco> mEnderecoLista  = sessionFactory.getCurrentSession().createCriteria(Endereco.class, "end")
+					.add(Restrictions.eq("pessoa.id", id)).list();
+			session.getTransaction().commit();
+			return mEnderecoLista;
+		}
+		return null;
 	}
 
+	// NOT OK YET
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<Telefone> getTelefones(int id) {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Pessoa.class, "pessoa");
-		criteria.createCriteria("telefone", "t");
-		criteria.add(Restrictions.eq("t.pessoa_id", id));
-		return criteria.list();
+	public List<Telefone> getTelefones(int id) { //possivel modificacao
+		Session session = sessionFactory.getCurrentSession();
+		if (session.isOpen()) {
+			session.getTransaction().begin();
+			List<Telefone> mTelefoneLista= sessionFactory.getCurrentSession().createCriteria(Telefone.class, "tel")
+					.add(Restrictions.eq("pessoa.id", id)).list();
+			session.getTransaction().commit();
+			return mTelefoneLista;
+		}
+
+		return null;
 	}
 
 	@Override

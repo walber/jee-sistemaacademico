@@ -6,6 +6,7 @@ import java.util.Set;
 
 import br.com.grupo4.projetoAcademico.dao.EnderecoDAOImpl;
 import br.com.grupo4.projetoAcademico.dao.PessoaDAOImpl;
+import br.com.grupo4.projetoAcademico.dao.ProfessorDAO;
 import br.com.grupo4.projetoAcademico.dao.ProfessorDAOImpl;
 import br.com.grupo4.projetoAcademico.dao.TelefoneDAOImpl;
 import br.com.grupo4.projetoAcademico.dao.TitulacaoDAOImpl;
@@ -26,50 +27,85 @@ public class Teste {
 		//
 
 		Teste t = new Teste();
-		t.inserirPessoa();
+		//		t.inserirPessoa();
+		t.inserirProfessor();
 
 	}
 
 	public void inserirProfessor() {
 
-		Professor p = new Professor();
-		p.setCpf("10153823470");
-		p.setNome("raimundo");
+		int upper = 1000;
+		int lower = 2;
+		int randomNumberForCPF = (int) (Math.random() * (upper - lower)) + lower;
+		String cpfTeste = Integer.toString(randomNumberForCPF);
+		// Primeiro inserir os dados gerais de pessoa
+		Pessoa p = new Professor(); 
+		p.setCpf(cpfTeste);
+		p.setNome("Pedrinho");
 		p.setSexo(Sexo.M);
-		p.setInstituicao("ufpe");
-		p.setDataAdmissao(new Date(System.currentTimeMillis()));
 
-		HashSet<Endereco> end = new HashSet<Endereco>();
 		Endereco nend = new Endereco();
 		nend.setBairro("Bairro Novo");
 		nend.setCidade(Cidade.OLINDA);
-		nend.setLogradouro("rua 0");
+		nend.setLogradouro("rua 100");
 		nend.setNumero(123);
 		nend.setUf("PE");
 		nend.setPessoa(p);
-		end.add(nend);
-		// p.setEndereco(end);
+
+		Endereco nend2 = new Endereco();
+		nend2.setBairro("Bairro Velho");
+		nend2.setCidade(Cidade.OLINDA);
+		nend2.setLogradouro("rua 20");
+		nend2.setNumero(93);
+		nend2.setUf("PE");
+		nend2.setPessoa(p);
 
 		Telefone telefone = new Telefone();
 		telefone.setDdd(81);
-		telefone.setNumero(36211480);
-		// HashSet<Telefone> telefoneHS= new HashSet<Telefone>();
+		telefone.setNumero(36201482);
 		telefone.setPessoa(p);
-		// telefoneHS.add(telefone);
 
+
+		// So então colocar os dados específicos de Professor
 		Titulacao titulo = new Titulacao();
 		titulo.setNomeTitulo("Professor");
-		Set<Professor> conjuntoProfessores = titulo.getProfessores();
-		conjuntoProfessores.add(p);
-		titulo.setProfessores(conjuntoProfessores);
-		// p.setTitulacao(titulo);
 
-		ProfessorDAOImpl.getInstance().inserir(p);
-		EnderecoDAOImpl.getInstance().inserir(nend);
-		TelefoneDAOImpl.getInstance().inserir(telefone);
+		// Casting pra adicionar dados específicos do professor
+		((Professor)p).setInstituicao("ufpe");
+		((Professor)p).setDataAdmissao(new Date(System.currentTimeMillis()));
+		((Professor)p).setTitulacao(titulo);
+
+		// Efetivamente inserindo tudo no banco
+		// Titulo vem primeiro porque professor precisa de um valor não nulo quando insere um titulo
 		TitulacaoDAOImpl.getInstance().inserir(titulo);
+		ProfessorDAOImpl.getInstance().inserir(((Professor)p));
+		TelefoneDAOImpl.getInstance().inserir(telefone);
+		EnderecoDAOImpl.getInstance().inserir(nend);
+		EnderecoDAOImpl.getInstance().inserir(nend2);
 
-		// prof.inserir(p);
+
+		// Agora vamos testar os outros métodos
+		System.out.println("----------------------------");
+		System.out.println("O professor de cpf:" + cpfTeste);
+		int professorId = ProfessorDAOImpl.getInstance().
+				getProfessorId(cpfTeste);
+		Professor mProfessor = ProfessorDAOImpl.getInstance().
+				getProfessorById(professorId);
+		System.out.println("Nome: " + mProfessor.getNome());
+		System.out.println("Sexo: " + mProfessor.getSexo());
+		System.out.println("Titulo: " + mProfessor.getTitulacao().getNomeTitulo());
+		System.out.println("Instituição: " + mProfessor.getInstituicao());
+		System.out.println("Data de Admissao: " + mProfessor.getDataAdmissao().toString());
+		System.out.println("Enderecos: ");
+
+		for(Endereco endereco : PessoaDAOImpl.getInstance().getEnderecos(professorId)){
+			System.out.println(endereco.toString());
+		}
+		
+		System.out.println("Telefones");
+		System.out.println(PessoaDAOImpl.getInstance().getTelefones(professorId).toString());
+
+
 	}
 
 	public void inserirPessoa() {
@@ -96,7 +132,6 @@ public class Teste {
 		EnderecoDAOImpl.getInstance().inserir(nend);
 		TelefoneDAOImpl.getInstance().inserir(telefone);
 
-		// prof.inserir(p);
 	}
 
 }
